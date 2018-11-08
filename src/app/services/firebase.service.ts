@@ -11,7 +11,7 @@ export class FirebaseService {
   constructor(public http: HttpClient) { }
 
   login(user) {
-    return this.http.post(user, this.url + '/login');
+    return this.http.get(user);
   }
 
   SignUp(user) {

@@ -3,27 +3,27 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputEmail4">Email</label>
-        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+        <input type="email" [(ngModel)]="user.email" class="form-control" id="inputEmail4" placeholder="Email">
       </div>
       <div class="form-group col-md-6">
         <label for="inputPassword4">Password</label>
-        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+        <input type="password" [(ngModel)]="user.password" class="form-control" id="inputPassword4" placeholder="Password">
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputAddress">Display Name</label>
-        <input type="text" class="form-control" id="inputDisplayName">
+        <input type="text" class="form-control" [(ngModel)]="user.displayName" id="inputDisplayName">
       </div>
       <div class="form-group col-md-6">
         <label for="inputAddress2">Phone</label>
-        <input type="tel" class="form-control" id="inputAddress2" placeholder="Enter Phone number">
+        <input type="tel" class="form-control" id="inputAddress2" [(ngModel)]="user.phone" placeholder="Enter Phone number">
       </div>
     </div>
 
     <div class="form-group">
       <label for="exampleFormControlFile1">Input File</label>
-      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      <input type="file" (change)="upload($event)" class="form-control-file" id="exampleFormControlFile1">
     </div>
 
     <button type="submit" class="btn btn-primary">Sign Up</button>

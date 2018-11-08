@@ -11,6 +11,8 @@ import { LocationComponent } from './location/location.component';
 import { FormsModule } from '@angular/forms';
 import { FirebaseService } from './services/firebase.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireModule } from 'angularfire2';
 
 
 @NgModule({
@@ -26,7 +28,15 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyAbuZHPahBBwjt8V1VvT5ndrOE0Pevpxb0",
+      authDomain: "my-project-1500925366254.firebaseapp.com",
+      databaseURL: "https://my-project-1500925366254.firebaseio.com",
+      projectId: "my-project-1500925366254",
+      storageBucket: "my-project-1500925366254.appspot.com"
+    }),
+    AngularFireStorageModule
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]

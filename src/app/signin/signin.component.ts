@@ -18,7 +18,7 @@ export class SigninComponent implements OnInit {
   }
   loginUser() {
     this.firebaseService.login(this.user).subscribe(res => {
-      this.router.navigateByUrl('locations');
+      // this.router.navigateByUrl('locations');
     },
       err => {
         console.log(err);
