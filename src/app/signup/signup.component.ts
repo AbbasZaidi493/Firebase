@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { FirebaseService } from '../services/firebase.service';
 
 
 @Component({
@@ -9,8 +10,8 @@ import { AngularFireStorage } from 'angularfire2/storage';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private afStorage: AngularFireStorage) { }
-  user = {}
+  constructor(private afStorage: AngularFireStorage, public firebaseService: FirebaseService) { }
+  user: any = {}
   ngOnInit() {
   }
 
@@ -21,8 +22,18 @@ export class SignupComponent implements OnInit {
     var ref = this.afStorage.ref(randomId);
     // the put method creates an AngularFireUploadTask
     // and kicks off the upload
-    var task = ref.put(event.target.files[0]);
-    console.log(task);
+    debugger;
 
+    var task = ref.put(event.target.files[0]).then(res => {
+      ref.getDownloadURL().subscribe(url => {
+        this.user.url = url
+      });
+    });
+
+  }
+  SignUp(user) {
+    this.firebaseService.SignUp(user).subscribe(res => {
+      console.log(res);
+    })
   }
 }

@@ -11,10 +11,10 @@ export class FirebaseService {
   constructor(public http: HttpClient) { }
 
   login(user) {
-    return this.http.get(user);
+    return this.http.post(this.url + '/login', user);
   }
 
   SignUp(user) {
-    return this.http.post(user, this.url + '/createuser');
+    return this.http.post(this.url + '/createuser', user);
   }
 }
