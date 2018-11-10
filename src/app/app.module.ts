@@ -15,6 +15,8 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireModule } from 'angularfire2';
 import { DataTableModule } from "@pascalhonegger/ng-datatable";
 import { AngularFireAuth } from 'angularfire2/auth';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 
@@ -25,7 +27,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
     SigninComponent,
     SignupComponent,
     HeaderComponent,
-    LocationComponent
+    LocationComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
       projectId: "my-project-1500925366254",
       storageBucket: "my-project-1500925366254.appspot.com"
     }),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    NgxPaginationModule
   ],
   providers: [FirebaseService, AngularFireAuth],
   bootstrap: [AppComponent]
