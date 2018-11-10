@@ -17,4 +17,8 @@ export class FirebaseService {
   SignUp(user) {
     return this.http.post(this.url + '/createuser', user);
   }
+
+  getAllUsers() {
+    return this.http.get(this.url + '/getallusers');
+  }
 }

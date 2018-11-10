@@ -11,29 +11,41 @@ import { FirebaseService } from '../services/firebase.service';
 export class SignupComponent implements OnInit {
 
   constructor(private afStorage: AngularFireStorage, public firebaseService: FirebaseService) { }
-  user: any = {}
+  user: any = {};
+  error = ""; 
+  active = true;
+  success = ""; 
   ngOnInit() {
+    this.success = "";
+    this.error = "";
   }
 
   upload(event) {
+    this.active = false;
     // create a random id
     const randomId = Math.random().toString(36).substring(2);
     // create a reference to the storage bucket location
     var ref = this.afStorage.ref(randomId);
     // the put method creates an AngularFireUploadTask
     // and kicks off the upload
-    debugger;
-
     var task = ref.put(event.target.files[0]).then(res => {
       ref.getDownloadURL().subscribe(url => {
-        this.user.url = url
+        this.active = true;
+        this.user.photoURL = url;
       });
     });
 
   }
-  SignUp(user) {
-    this.firebaseService.SignUp(user).subscribe(res => {
-      console.log(res);
+  SignUp() {
+    this.success = "";
+    this.error = "";    
+      this.firebaseService.SignUp(this.user).subscribe(res => {
+        console.log(res);
+        this.success = "Sign up Successfully"
+      }, 
+    err => {
+      this.error = err.error.message;
+      console.log(err);
     })
   }
 }

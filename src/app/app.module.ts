@@ -13,6 +13,8 @@ import { FirebaseService } from './services/firebase.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireModule } from 'angularfire2';
+import {DataTableModule} from "@pascalhonegger/ng-datatable";
+
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import { AngularFireModule } from 'angularfire2';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    DataTableModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyAbuZHPahBBwjt8V1VvT5ndrOE0Pevpxb0",
       authDomain: "my-project-1500925366254.firebaseapp.com",

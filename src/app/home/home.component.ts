@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(public router: Router) { }
+  users: any;
+  constructor(public firebaseService: FirebaseService, public router: Router) { }
 
   ngOnInit() {
+    this.firebaseService.getAllUsers().subscribe(res => {
+      if(res) {
+        this.users = res;
+        console.log(this.users);
+      }      
+    },
+      err => {
+        console.log(err);
+      })
   }
+
 
 }
