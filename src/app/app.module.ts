@@ -15,8 +15,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireModule } from 'angularfire2';
 import { DataTableModule } from "@pascalhonegger/ng-datatable";
 import { AngularFireAuth } from 'angularfire2/auth';
-
-
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -42,7 +41,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
     }),
     AngularFireStorageModule
   ],
-  providers: [FirebaseService, AngularFireAuth],
+  providers: [FirebaseService, AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
