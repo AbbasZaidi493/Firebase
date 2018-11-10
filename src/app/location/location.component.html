@@ -1,3 +1,36 @@
-<p>
-  location works!
-</p>
+<div class="container mt-3">
+  
+      <div class="row text-center">
+          <h2>Locations</h2>
+      </div>
+      <div class="row">
+          <div class="col-md-3 form-group">
+              <label for="resort"> Filter</label>
+              <input type="text" class="form-control" name="userName" [(ngModel)]="name" placeholder="Search by  Name">
+          </div>
+      </div>
+      <div>
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                      <th style="width: 20%">
+                          Name
+                      </th>
+                      <th style="width: 20%">
+                          Geo Location
+                      </th>
+                      <th style="width: 20%">
+                          Image
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of allLocations | filter : 'name' : name">
+                      <td>{{item.name}}</td>
+                      <td>[{{item.geo.latitude}}N, {{item.geo.longitude}}E]</td>
+                      <td class="text-right"><img src={{item.image}} alt="Smiley face" height="42" width="42"></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>

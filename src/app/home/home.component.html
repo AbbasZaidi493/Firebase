@@ -1,38 +1,49 @@
-<div class="home">
-    <div class="users">
-    <h1>Users</h1>
-        <table class="table table-striped" [mfData]="users" #mf="mfDataTable" [mfRowsOnPage]="5">
-                <thead>
+<div class="container mt-3">
+
+    <div class="row text-center">
+        <h2>All Users</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-3 form-group">
+            <label for="resort"> Filter</label>
+            <input type="text" class="form-control" name="userName" [(ngModel)]="name" placeholder="Search by  Name">
+        </div>
+    </div>
+    <div>
+        <table class="table table-hover">
+            <thead>
                 <tr>
                     <th style="width: 20%">
-                        <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                        Name
                     </th>
                     <th style="width: 20%">
-                        <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                        Email
                     </th>
                     <th style="width: 20%">
-                        <mfDefaultSorter by="age">Photo</mfDefaultSorter>
+                        Photo
                     </th>
                     <th style="width: 20%">
-                        <mfDefaultSorter by="city">Phone Number</mfDefaultSorter>
+                        Phone Number
                     </th>
                 </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let item of users">
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of users | filter : 'displayName' : name">
                     <td>{{item.displayName}}</td>
                     <td>{{item.email}}</td>
                     <td class="text-right"><img src={{item.photoURL}} alt="Smiley face" height="42" width="42"></td>
-                    <td >{{item.phoneNumber}}</td>
+                    <td>{{item.phoneNumber}}</td>
                 </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="4">
-                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                    </td>
-                </tr>
-                </tfoot>
-            </table>
+            </tbody>
+            <div *ngIf="users.length !== 0" class="col form-group">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" (click)="GetPrevious()">Previous</a></li>
+                        <li class="page-item"><a class="page-link" (click)="GetNext()">Next</a></li>
+                    </ul>
+                </nav>
+
             </div>
+        </table>
+    </div>
 </div>

@@ -19,7 +19,8 @@ export class FirebaseService {
     return this.http.post(this.url + '/createuser', user);
   }
 
-  getAllUsers() {
-    return this.http.get(this.url + '/getallusers');
+  getAllUsers(Token) {
+
+    return this.http.post(this.url + '/getallusers', { nextPageToken: Token });
   }
 }

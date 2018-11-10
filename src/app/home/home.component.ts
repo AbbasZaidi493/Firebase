@@ -8,20 +8,36 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  users: any;
+  users: any = [];
+  name: string;
+  tokenArray = [];
+  Token: any;
+  index = -1;
   constructor(public firebaseService: FirebaseService, public router: Router) { }
 
   ngOnInit() {
-    this.firebaseService.getAllUsers().subscribe(res => {
-      if(res) {
-        this.users = res;
-        console.log(this.users);
-      }      
+    this.GetUsers('');
+  }
+  GetUsers(token) {
+    this.firebaseService.getAllUsers(token).subscribe((res: any) => {
+      if (res) {
+        this.users = res.allUsers;
+        if (res.pageToken) {
+          this.tokenArray.push(res.pageToken);
+        }
+        console.log(this.tokenArray);
+      }
     },
       err => {
         console.log(err);
       })
   }
-
-
+  GetPrevious() {
+    this.index = this.index - 1
+    this.GetUsers(this.tokenArray[this.index]);
+  }
+  GetNext() {
+    this.index = this.index + 1
+    this.GetUsers(this.tokenArray[this.index]);
+  }
 }

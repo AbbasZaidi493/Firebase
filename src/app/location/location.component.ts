@@ -34,8 +34,6 @@ export class LocationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.locationsCollection = this.afs.collection<Location>('locations');
-    this.locations = this.locationsCollection.valueChanges(); 
     this.afs.collection("locations").snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data();
@@ -51,8 +49,10 @@ export class LocationComponent implements OnInit {
   }
 
   addLocation(location: Location) {
-    this.locationData =  new firebase.firestore.GeoPoint(this.lat, this.long);
-    this.location.geo = this.locationData;
-    this.locationsCollection.add(location);
+    // this.locationsCollection = this.afs.collection<Location>('locations');
+    // this.locations = this.locationsCollection.valueChanges(); 
+    // this.locationData =  new firebase.firestore.GeoPoint(this.lat, this.long);
+    // this.location.geo = this.locationData;
+    // this.locationsCollection.add(location);
   }
 }

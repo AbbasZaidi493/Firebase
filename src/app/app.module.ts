@@ -16,6 +16,9 @@ import { AngularFireModule } from 'angularfire2';
 import { DataTableModule } from "@pascalhonegger/ng-datatable";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { FilterPipe } from './pipes/filter.pipe';
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     SigninComponent,
     SignupComponent,
     HeaderComponent,
-    LocationComponent
+    LocationComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
       projectId: "my-project-1500925366254",
       storageBucket: "my-project-1500925366254.appspot.com"
     }),
-    AngularFireStorageModule
+    AngularFireStorageModule,
   ],
   providers: [FirebaseService, AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]
