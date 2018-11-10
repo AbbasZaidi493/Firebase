@@ -12,16 +12,19 @@ export class SigninComponent implements OnInit {
     email: '',
     password: ''
   }
+  error = "";
+
   constructor(public firebaseService: FirebaseService, public router: Router) { }
 
   ngOnInit() {
   }
   loginUser() {
-    this.firebaseService.login(this.user).subscribe(res => {
-      // this.router.navigateByUrl('locations');
-    },
-      err => {
-        console.log(err);
-      })
+    this.error = ''
+    this.firebaseService.login(this.user).then(res => {
+      this.router.navigateByUrl('locations');
+    }).catch(err => {
+      this.error = err.message;
+      console.log(err);
+    })
   }
 }

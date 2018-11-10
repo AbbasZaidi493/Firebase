@@ -13,7 +13,8 @@ import { FirebaseService } from './services/firebase.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireModule } from 'angularfire2';
-import {DataTableModule} from "@pascalhonegger/ng-datatable";
+import { DataTableModule } from "@pascalhonegger/ng-datatable";
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 
@@ -41,7 +42,7 @@ import {DataTableModule} from "@pascalhonegger/ng-datatable";
     }),
     AngularFireStorageModule
   ],
-  providers: [FirebaseService],
+  providers: [FirebaseService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

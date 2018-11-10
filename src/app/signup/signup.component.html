@@ -1,24 +1,26 @@
 <div class="container">
-  <form #form="ngForm" (ngSubmit)="SignUp()">
+  <form #myForm="ngForm" (ngSubmit)="SignUp()">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputEmail4">Email</label>
-        <input required="" type="email" name="email" [(ngModel)]="user.email" class="form-control" id="inputEmail4" placeholder="Email">
+        <input required type="email" name="email" [(ngModel)]="user.email" class="form-control" id="inputEmail4"
+          placeholder="Email">
       </div>
       <div class="form-group col-md-6">
         <label for="inputPassword4">Password</label>
-        <input type="password" name="email" [(ngModel)]="user.password" class="form-control" id="inputPassword4"
+        <input required type="password" name="password" [(ngModel)]="user.password" class="form-control" id="inputPassword4"
           placeholder="Password">
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputAddress">Display Name</label>
-        <input type="text" name="email" class="form-control" [(ngModel)]="user.displayName" id="inputDisplayName">
+        <input required type="text" name="email" class="form-control" [(ngModel)]="user.displayName" id="inputDisplayName">
       </div>
       <div class="form-group col-md-6">
         <label for="inputAddress2">Phone</label>
-        <input type="tel" name="email" class="form-control" id="inputAddress2" [(ngModel)]="user.phoneNumber" placeholder="Enter Phone number">
+        <input required type="tel" name="email" class="form-control" id="inputAddress2" [(ngModel)]="user.phoneNumber"
+          placeholder="Enter Phone number">
       </div>
     </div>
 
@@ -26,12 +28,15 @@
       <label for="exampleFormControlFile1">Input File</label>
       <input type="file" (change)="upload($event)" class="form-control-file" id="exampleFormControlFile1">
     </div>
-    <div *ngIf="error" style="color: red"> 
+    <div *ngIf="active === false" class="alert alert-info w-50">
+      uploading picture
+    </div>
+    <div *ngIf="error" style="color: red">
       {{error}}
     </div>
-    <div *ngIf="success" style="color: green"> 
-        {{success}}
-      </div>
-    <button type="submit" [disabled]="!active"  class="btn btn-primary">Sign Up</button>
+    <div *ngIf="success" style="color: green">
+      {{success}}
+    </div>
+    <button type="submit" [disabled]="!myForm.valid || !active" class="btn btn-primary">Sign Up</button>
   </form>
 </div>
